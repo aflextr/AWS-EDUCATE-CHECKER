@@ -6,6 +6,9 @@ import requests
 import os
 from bs4 import BeautifulSoup
 
+print("AWS EDUCATE CHECKER PROXYLESS")
+print("\n\n")
+
 ## Combo dosyası girişi
 giris = input(str("Dosya ismi:"))
 a = open(giris,"r",encoding="utf-8").readlines()
